@@ -154,6 +154,19 @@ Citizen.CreateThread(function()
     end
 end)
 
+RegisterNetEvent('bridgeport:robberyResult')
+AddEventHandler('bridgeport:robberyResult', function(success, payout, message)
+    if success then
+        TriggerEvent('chat:addMessage', { 
+            args = { '[Bridgeport Robbery]', 'Success! Earned $' .. payout } 
+        })
+    else
+        TriggerEvent('chat:addMessage', { 
+            args = { '[Bridgeport Robbery]', 'Failed: ' .. message } 
+        })
+    end
+end)
+
 -- toaster helper
 function DrawText3D(x,y,z, text)
     local onScreen,_x,_y=World3dToScreen2d(x,y,z)
