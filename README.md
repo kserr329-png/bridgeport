@@ -34,6 +34,33 @@ A complete FiveM resource for simulating the Bridgeport neighborhood in Chicago 
 4. Make sure the `stream` folder contains `bridgeport_draft.ymap`
 5. Restart your server
 
+### Using Automated Packaging Scripts
+
+This repository includes scripts to automatically create a `bridgeport.zip` file ready for txAdmin upload:
+
+**For Windows:**
+```batch
+package_resource.bat
+```
+
+**For Linux/Mac:**
+```bash
+./package_resource.sh
+```
+
+Both scripts will:
+1. Create a temporary `bridgeport/` directory with the correct structure
+2. Copy all required files (`fxmanifest.lua`, `client.lua`, `server.lua`, `locations.lua`, `config.lua`, and `stream/bridgeport_draft.ymap`)
+3. Generate a `bridgeport.zip` file ready for txAdmin upload
+4. Clean up temporary files
+
+**To use the generated ZIP in txAdmin:**
+1. Go to your txAdmin web interface
+2. Navigate to "Resources" 
+3. Click "Install from ZIP"
+4. Upload the generated `bridgeport.zip` file
+5. Restart your server
+
 ## Configuration
 
 - **Config.lua**: Adjust NPC spawning, day/night hours, and spawn radius
