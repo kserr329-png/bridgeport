@@ -24,3 +24,7 @@ node_modules/
 
 # FiveM cache files
 cache/
+
+# Generated packaging files
+bridgeport.zip
+bridgeport/
