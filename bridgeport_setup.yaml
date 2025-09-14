@@ -6,7 +6,7 @@ author: MeepMeep
 description: TXAdmin-ready Qbox + Bridgeport Chicago ESX resource with jobs, teleports, NPCs, and robbery locations.
 
 tasks:
-  # 1️⃣ Create Bridgeport ESX resource folder
+  # 1️⃣ Ensure Bridgeport ESX resource folder exists before using it
   - action: create_path
     path: ./resources/esx/bridgeport
 
@@ -15,7 +15,7 @@ tasks:
     path: ./resources/esx/bridgeport/config.lua
     content: |
       Config = {}
-      
+
       Config.Teleports = {
           {label = "31st & Morgan", x = -870.0, y = -1245.0, z = 6.0},
           {label = "32nd & Lituanica", x = -900.0, y = -1200.0, z = 6.0},
@@ -23,12 +23,12 @@ tasks:
           {label = "McGuane Park", x = -980.0, y = -1280.0, z = 6.0},
           {label = "CPD 9th District", x = -910.0, y = -1250.0, z = 6.0}
       }
-      
+
       Config.NPCs = {
           {name = "SDz", dialogue = "The SDz be wildin"},
           {name = "Gordy Rots", dialogue = "Gordy Rots"}
       }
-      
+
       Config.RobberyJobs = {
           {type = "brothel", reward = 5000},
           {type = "asian_massage", reward = 3500}
