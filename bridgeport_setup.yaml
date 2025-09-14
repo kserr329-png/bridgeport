@@ -6,11 +6,7 @@ author: MeepMeep
 description: TXAdmin-ready Qbox + Bridgeport Chicago ESX resource with jobs, teleports, NPCs, and robbery locations.
 
 tasks:
-  # 1️⃣ Ensure Bridgeport ESX resource folder exists before using it
-  - action: create_path
-    path: ./resources/esx/bridgeport
-
-  # 2️⃣ Create Bridgeport config.lua
+  # 1️⃣ Create Bridgeport config.lua (folder will be created automatically if needed)
   - action: append_file
     path: ./resources/esx/bridgeport/config.lua
     content: |
@@ -34,7 +30,7 @@ tasks:
           {type = "asian_massage", reward = 3500}
       }
 
-  # 3️⃣ Download QBX Resources (fixed URLs)
+  # 2️⃣ Download QBX Resources (fixed URLs)
   - action: download_github
     src: https://github.com/qbox-project/qbx_ambulancejob
     ref: main
@@ -60,7 +56,7 @@ tasks:
     ref: main
     dest: ./resources/qbx/qbx_hud
 
-  # 4️⃣ Download Standalone Resources
+  # 3️⃣ Download Standalone Resources
   - action: download_github
     src: https://github.com/qbox-project/mhacking
     ref: main
@@ -81,13 +77,13 @@ tasks:
     ref: master
     dest: ./resources/standalone/bob74_ipl
 
-  # 5️⃣ Download OX Inventory (fixed URL)
+  # 4️⃣ Download OX Inventory (fixed URL)
   - action: download_github
     src: https://github.com/overextended/ox_inventory
     ref: main
     dest: ./resources/ox/ox_inventory
 
-  # 6️⃣ Inject Bridgeport Teleports into QBX Spawn
+  # 5️⃣ Inject Bridgeport Teleports into QBX Spawn
   - action: append_file
     path: ./resources/qbx/qbx_spawn/config.lua
     content: |
@@ -97,7 +93,7 @@ tasks:
       table.insert(Config.Spawns, {label="McGuane Park", x=-980.0, y=-1280.0, z=6.0})
       table.insert(Config.Spawns, {label="CPD 9th District", x=-910.0, y=-1250.0, z=6.0})
 
-  # 7️⃣ Create NPC behavior script
+  # 6️⃣ Create NPC behavior script
   - action: append_file
     path: ./resources/esx/bridgeport/npc_behavior.lua
     content: |
@@ -120,7 +116,7 @@ tasks:
           end
       end)
 
-  # 8️⃣ Create server.cfg
+  # 7️⃣ Create server.cfg
   - action: append_file
     path: ./server.cfg
     content: |
