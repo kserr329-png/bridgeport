@@ -1,0 +1,26 @@
+# Temporary files
+*.tmp
+*.temp
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+*.swp
+*.swo
+*~
+.vscode/
+.idea/
+
+# Build artifacts
+dist/
+build/
+*.cache
+
+# Node modules (if any JavaScript tools are used)
+node_modules/
+
+# FiveM cache files
+cache/
