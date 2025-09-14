@@ -5,14 +5,16 @@ description: |
   This recipe will set up the Bridgeport resource (with config.lua, locations.lua, fxmanifest.lua, client.lua, and server.lua), install all Qbox/OX/standalone dependencies, and clean up temp files. Copy the provided ensure lines into your server.cfg.
 
 tasks:
+  - action: create_folder
+    path: tmp
   - action: download_file
     src: https://github.com/kserr329-png/bridgeport/archive/refs/heads/main.zip
-    dest: ./tmp/bridgeport.zip
+    dest: tmp/bridgeport.zip
   - action: unzip
-    src: ./tmp/bridgeport.zip
-    dest: ./resources/esx/bridgeport
+    src: tmp/bridgeport.zip
+    dest: resources/esx/bridgeport
   - action: write_file
-    path: ./resources/esx/bridgeport/config.lua
+    path: resources/esx/bridgeport/config.lua
     content: |
       Config = {}
       Config.spawnRadius = 12.0
@@ -22,7 +24,7 @@ tasks:
       Config.nightOnlyHeatMultiplier = 1.5
       Config.respawnDelay = 30
   - action: write_file
-    path: ./resources/esx/bridgeport/locations.lua
+    path: resources/esx/bridgeport/locations.lua
     content: |
       Locations = {
         teleports = {
@@ -40,7 +42,7 @@ tasks:
         }
       }
   - action: write_file
-    path: ./resources/esx/bridgeport/fxmanifest.lua
+    path: resources/esx/bridgeport/fxmanifest.lua
     content: |
       fx_version 'cerulean'
       game 'gta5'
@@ -54,87 +56,87 @@ tasks:
       files {'stream/bridgeport_draft.ymap'}
       data_file 'DLC_ITYP_REQUEST' 'stream/bridgeport_draft.ymap'
   - action: write_file
-    path: ./resources/esx/bridgeport/client.lua
+    path: resources/esx/bridgeport/client.lua
     content: |
-      -- client.lua content (see prior message for complete code)
+      -- client.lua content (see previous message for complete code)
   - action: write_file
-    path: ./resources/esx/bridgeport/server.lua
+    path: resources/esx/bridgeport/server.lua
     content: |
-      -- server.lua content (see prior message for complete code)
+      -- server.lua content (see previous message for complete code)
   - action: download_file
     src: https://github.com/qbox-project/qbx_ambulancejob/archive/refs/heads/main.zip
-    dest: ./tmp/qbx_ambulancejob.zip
+    dest: tmp/qbx_ambulancejob.zip
   - action: unzip
-    src: ./tmp/qbx_ambulancejob.zip
-    dest: ./resources/qbx/qbx_ambulancejob
+    src: tmp/qbx_ambulancejob.zip
+    dest: resources/qbx/qbx_ambulancejob
   - action: download_file
     src: https://github.com/qbox-project/qbx_police/archive/refs/heads/main.zip
-    dest: ./tmp/qbx_police.zip
+    dest: tmp/qbx_police.zip
   - action: unzip
-    src: ./tmp/qbx_police.zip
-    dest: ./resources/qbx/qbx_police
+    src: tmp/qbx_police.zip
+    dest: resources/qbx/qbx_police
   - action: download_file
     src: https://github.com/qbox-project/qbx_vehicles/archive/refs/heads/main.zip
-    dest: ./tmp/qbx_vehicles.zip
+    dest: tmp/qbx_vehicles.zip
   - action: unzip
-    src: ./tmp/qbx_vehicles.zip
-    dest: ./resources/qbx/qbx_vehicles
+    src: tmp/qbx_vehicles.zip
+    dest: resources/qbx/qbx_vehicles
   - action: download_file
     src: https://github.com/qbox-project/qbx_properties/archive/refs/heads/main.zip
-    dest: ./tmp/qbx_properties.zip
+    dest: tmp/qbx_properties.zip
   - action: unzip
-    src: ./tmp/qbx_properties.zip
-    dest: ./resources/qbx/qbx_properties
+    src: tmp/qbx_properties.zip
+    dest: resources/qbx/qbx_properties
   - action: download_file
     src: https://github.com/qbox-project/qbx_hud/archive/refs/heads/main.zip
-    dest: ./tmp/qbx_hud.zip
+    dest: tmp/qbx_hud.zip
   - action: unzip
-    src: ./tmp/qbx_hud.zip
-    dest: ./resources/qbx/qbx_hud
+    src: tmp/qbx_hud.zip
+    dest: resources/qbx/qbx_hud
   - action: download_file
     src: https://github.com/qbox-project/mhacking/archive/refs/heads/main.zip
-    dest: ./tmp/mhacking.zip
+    dest: tmp/mhacking.zip
   - action: unzip
-    src: ./tmp/mhacking.zip
-    dest: ./resources/standalone/mhacking
+    src: tmp/mhacking.zip
+    dest: resources/standalone/mhacking
   - action: download_file
     src: https://github.com/qbox-project/screencapture/archive/refs/heads/main.zip
-    dest: ./tmp/screencapture.zip
+    dest: tmp/screencapture.zip
   - action: unzip
-    src: ./tmp/screencapture.zip
-    dest: ./resources/standalone/screencapture
+    src: tmp/screencapture.zip
+    dest: resources/standalone/screencapture
   - action: download_file
     src: https://github.com/qbox-project/safecracker/archive/refs/heads/main.zip
-    dest: ./tmp/safecracker.zip
+    dest: tmp/safecracker.zip
   - action: unzip
-    src: ./tmp/safecracker.zip
-    dest: ./resources/standalone/safecracker
+    src: tmp/safecracker.zip
+    dest: resources/standalone/safecracker
   - action: download_file
     src: https://github.com/Bob74/bob74_ipl/archive/refs/heads/master.zip
-    dest: ./tmp/bob74_ipl.zip
+    dest: tmp/bob74_ipl.zip
   - action: unzip
-    src: ./tmp/bob74_ipl.zip
-    dest: ./resources/standalone/bob74_ipl
+    src: tmp/bob74_ipl.zip
+    dest: resources/standalone/bob74_ipl
   - action: download_file
     src: https://github.com/overextended/ox_inventory/archive/refs/heads/main.zip
-    dest: ./tmp/ox_inventory.zip
+    dest: tmp/ox_inventory.zip
   - action: unzip
-    src: ./tmp/ox_inventory.zip
-    dest: ./resources/ox/ox_inventory
+    src: tmp/ox_inventory.zip
+    dest: resources/ox/ox_inventory
   - action: download_file
     src: https://github.com/communityox/ox_lib/releases/latest/download/ox_lib.zip
-    dest: ./tmp/ox_lib.zip
+    dest: tmp/ox_lib.zip
   - action: unzip
-    src: ./tmp/ox_lib.zip
-    dest: ./resources/ox/ox_lib
+    src: tmp/ox_lib.zip
+    dest: resources/ox/ox_lib
   - action: download_file
     src: https://github.com/communityox/ox_target/releases/latest/download/ox_target.zip
-    dest: ./tmp/ox_target.zip
+    dest: tmp/ox_target.zip
   - action: unzip
-    src: ./tmp/ox_target.zip
-    dest: ./resources/ox/ox_target
+    src: tmp/ox_target.zip
+    dest: resources/ox/ox_target
   - action: remove_path
-    path: ./tmp
+    path: tmp
 
 # --- ENSURE THE FOLLOWING LINES ARE IN YOUR SERVER.CFG ---
 # ensure esx/bridgeport
