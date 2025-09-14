@@ -1,155 +1,132 @@
+$engine: 3
+$onesync: on
 name: Qbox Bridgeport
+version: 1.0.0
 author: MeepMeep
 description: TXAdmin-ready Qbox + Bridgeport Chicago ESX resource with jobs, teleports, NPCs, and robbery locations.
 
-# === Bridgeport Neighborhood Details (Reference) ===
-# Teleports/Locations:
-# - 31st & Morgan:        x = -870.0,  y = -1245.0, z = 6.0
-# - 32nd & Lituanica:     x = -900.0,  y = -1200.0, z = 6.0
-# - 33rd & Morgan:        x = -950.0,  y = -1300.0, z = 6.0
-# - McGuane Park:         x = -980.0,  y = -1280.0, z = 6.0
-# - CPD 9th District:     x = -910.0,  y = -1250.0, z = 6.0
-#
-# Points of Interest:
-# - Bridgeport Art Center
-# - Zhou B Art Center
-# - McGuane Park
-# - Schaller’s Pump (oldest bar)
-# - Armour Square Park
-# - Ramova Theatre
-# - Park No. 571
-#
-# NPCs (for config):
-# - SDz (dialogue: "The SDz be wildin") at 31st & Morgan
-# - Gordy Rots (dialogue: "Gordy Rots") at CPD 9th District
-#
-# Robbery/Job Locations (for config):
-# - Brothel (location: Bridgeport)
-# - Asian Massage (location: Bridgeport)
-#
-# Example config.lua for your bridgeport resource:
-# Config = {}
-# Config.Teleports = {
-#   {label = "31st & Morgan", x = -870.0, y = -1245.0, z = 6.0},
-#   {label = "32nd & Lituanica", x = -900.0, y = -1200.0, z = 6.0},
-#   {label = "33rd & Morgan", x = -950.0, y = -1300.0, z = 6.0},
-#   {label = "McGuane Park", x = -980.0, y = -1280.0, z = 6.0},
-#   {label = "CPD 9th District", x = -910.0, y = -1250.0, z = 6.0}
-# }
-# Config.NPCs = {
-#   {name = "SDz", dialogue = "The SDz be wildin", x = -870.0, y = -1245.0, z = 6.0},
-#   {name = "Gordy Rots", dialogue = "Gordy Rots", x = -910.0, y = -1250.0, z = 6.0}
-# }
-# Config.RobberyJobs = {
-#   {type = "brothel", reward = 5000},
-#   {type = "asian_massage", reward = 3500}
-# }
-# === End Reference ===
-
 tasks:
-  # Download your custom Bridgeport map/resource (edit URL as needed)
-  - action: download_file
-    url: https://github.com/kserr329-png/bridgeport/archive/refs/heads/main.zip
-    path: ./tmp/bridgeport.zip
+  # 1️⃣ Create Bridgeport config.lua (folder will be created automatically if needed)
+  - action: append_file
+    path: ./resources/esx/bridgeport/config.lua
+    content: |
+      Config = {}
 
-  - action: extract
-    path: ./tmp/bridgeport.zip
-    dest: ./resources/esx/bridgeport
+      Config.Teleports = {
+          {label = "31st & Morgan", x = -870.0, y = -1245.0, z = 6.0},
+          {label = "32nd & Lituanica", x = -900.0, y = -1200.0, z = 6.0},
+          {label = "33rd & Morgan", x = -950.0, y = -1300.0, z = 6.0},
+          {label = "McGuane Park", x = -980.0, y = -1280.0, z = 6.0},
+          {label = "CPD 9th District", x = -910.0, y = -1250.0, z = 6.0}
+      }
 
-  # Download Qbox/ESX/Standalone resources
-  - action: download_file
-    url: https://github.com/qbox-project/qbx_ambulancejob/archive/refs/heads/main.zip
-    path: ./tmp/qbx_ambulancejob.zip
+      Config.NPCs = {
+          {name = "SDz", dialogue = "The SDz be wildin"},
+          {name = "Gordy Rots", dialogue = "Gordy Rots"}
+      }
 
-  - action: extract
-    path: ./tmp/qbx_ambulancejob.zip
+      Config.RobberyJobs = {
+          {type = "brothel", reward = 5000},
+          {type = "asian_massage", reward = 3500}
+      }
+
+  # 2️⃣ Download QBX Resources (fixed URLs)
+  - action: download_github
+    src: https://github.com/qbox-project/qbx_ambulancejob
+    ref: main
     dest: ./resources/qbx/qbx_ambulancejob
 
-  - action: download_file
-    url: https://github.com/qbox-project/qbx_police/archive/refs/heads/main.zip
-    path: ./tmp/qbx_police.zip
-
-  - action: extract
-    path: ./tmp/qbx_police.zip
+  - action: download_github
+    src: https://github.com/qbox-project/qbx_police
+    ref: main
     dest: ./resources/qbx/qbx_police
 
-  - action: download_file
-    url: https://github.com/qbox-project/qbx_vehicles/archive/refs/heads/main.zip
-    path: ./tmp/qbx_vehicles.zip
-
-  - action: extract
-    path: ./tmp/qbx_vehicles.zip
+  - action: download_github
+    src: https://github.com/qbox-project/qbx_vehicles
+    ref: main
     dest: ./resources/qbx/qbx_vehicles
 
-  - action: download_file
-    url: https://github.com/qbox-project/qbx_properties/archive/refs/heads/main.zip
-    path: ./tmp/qbx_properties.zip
-
-  - action: extract
-    path: ./tmp/qbx_properties.zip
+  - action: download_github
+    src: https://github.com/qbox-project/qbx_properties
+    ref: main
     dest: ./resources/qbx/qbx_properties
 
-  - action: download_file
-    url: https://github.com/qbox-project/qbx_hud/archive/refs/heads/main.zip
-    path: ./tmp/qbx_hud.zip
-
-  - action: extract
-    path: ./tmp/qbx_hud.zip
+  - action: download_github
+    src: https://github.com/qbox-project/qbx_hud
+    ref: main
     dest: ./resources/qbx/qbx_hud
 
-  # Standalone resources
-  - action: download_file
-    url: https://github.com/qbox-project/mhacking/archive/refs/heads/main.zip
-    path: ./tmp/mhacking.zip
-
-  - action: extract
-    path: ./tmp/mhacking.zip
+  # 3️⃣ Download Standalone Resources
+  - action: download_github
+    src: https://github.com/qbox-project/mhacking
+    ref: main
     dest: ./resources/standalone/mhacking
 
-  - action: download_file
-    url: https://github.com/qbox-project/screencapture/archive/refs/heads/main.zip
-    path: ./tmp/screencapture.zip
-
-  - action: extract
-    path: ./tmp/screencapture.zip
+  - action: download_github
+    src: https://github.com/qbox-project/screencapture
+    ref: main
     dest: ./resources/standalone/screencapture
 
-  - action: download_file
-    url: https://github.com/qbox-project/safecracker/archive/refs/heads/main.zip
-    path: ./tmp/safecracker.zip
-
-  - action: extract
-    path: ./tmp/safecracker.zip
+  - action: download_github
+    src: https://github.com/qbox-project/safecracker
+    ref: main
     dest: ./resources/standalone/safecracker
 
-  - action: download_file
-    url: https://github.com/Bob74/bob74_ipl/archive/refs/heads/master.zip
-    path: ./tmp/bob74_ipl.zip
-
-  - action: extract
-    path: ./tmp/bob74_ipl.zip
+  - action: download_github
+    src: https://github.com/Bob74/bob74_ipl
+    ref: master
     dest: ./resources/standalone/bob74_ipl
 
-  - action: download_file
-    url: https://github.com/overextended/ox_inventory/archive/refs/heads/main.zip
-    path: ./tmp/ox_inventory.zip
-
-  - action: extract
-    path: ./tmp/ox_inventory.zip
+  # 4️⃣ Download OX Inventory (fixed URL)
+  - action: download_github
+    src: https://github.com/overextended/ox_inventory
+    ref: main
     dest: ./resources/ox/ox_inventory
 
-  # Optionally: clean up tmp folder
-  - action: remove_path
-    path: ./tmp
+  # 5️⃣ Inject Bridgeport Teleports into QBX Spawn
+  - action: append_file
+    path: ./resources/qbx/qbx_spawn/config.lua
+    content: |
+      table.insert(Config.Spawns, {label="31st & Morgan", x=-870.0, y=-1245.0, z=6.0})
+      table.insert(Config.Spawns, {label="32nd & Lituanica", x=-900.0, y=-1200.0, z=6.0})
+      table.insert(Config.Spawns, {label="33rd & Morgan", x=-950.0, y=-1300.0, z=6.0})
+      table.insert(Config.Spawns, {label="McGuane Park", x=-980.0, y=-1280.0, z=6.0})
+      table.insert(Config.Spawns, {label="CPD 9th District", x=-910.0, y=-1250.0, z=6.0})
 
-# Reminder: Manually ensure your server.cfg contains the following lines:
-# ensure bridgeport
-# ensure qbx_ambulancejob
-# ensure qbx_police
-# ensure qbx_vehicles
-# ensure qbx_properties
-# ensure qbx_hud
-# ensure mhacking
-# ensure screencapture
-# ensure safecracker
-# ensure ox_inventory
+  # 6️⃣ Create NPC behavior script
+  - action: append_file
+    path: ./resources/esx/bridgeport/npc_behavior.lua
+    content: |
+      CreateThread(function()
+          local npcs = {
+              {name = "SDz", x=-870.0, y=-1245.0, z=6.0, dialogue="The SDz be wildin"},
+              {name = "Gordy Rots", x=-910.0, y=-1250.0, z=6.0, dialogue="Gordy Rots"}
+          }
+
+          while true do
+              Wait(5000)
+              local player = PlayerPedId()
+              local px, py, pz = table.unpack(GetEntityCoords(player))
+              for _, npc in pairs(npcs) do
+                  local dist = #(vector3(npc.x, npc.y, npc.z) - vector3(px, py, pz))
+                  if dist < 5.0 then
+                      TriggerEvent('chat:addMessage', { args = { npc.name, npc.dialogue } })
+                  end
+              end
+          end
+      end)
+
+  # 7️⃣ Create server.cfg
+  - action: append_file
+    path: ./server.cfg
+    content: |
+      ensure bridgeport
+      ensure qbx_ambulancejob
+      ensure qbx_police
+      ensure qbx_vehicles
+      ensure qbx_properties
+      ensure qbx_hud
+      ensure mhacking
+      ensure screencapture
+      ensure safecracker
+      ensure ox_inventory
